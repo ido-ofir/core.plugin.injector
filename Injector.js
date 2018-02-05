@@ -247,6 +247,19 @@ module.exports = function Injector(constructed){
     },
     require(dependency, callback, namespace){
       var dependencies = Array.isArray(dependency) ? dependency : [dependency];
+      var hasAllDependencies = true;
+      var resolved = [];
+      for(var i = 0; i < dependencies.length; i++){
+        if(!modules[dependencies[i]]){
+          hasAllDependencies = true;
+          break;
+        }
+        resolved.push(modules[dependencies[i]])
+      }
+      if(hasAllDependencies){
+        if(callback){ callback.apply(null, resolved); }
+        return (resolved.length) > 1 ? resolved : resolved[0];
+      }
       lists.requires.push({
         dependencies: dependencies,
         callback: callback,
