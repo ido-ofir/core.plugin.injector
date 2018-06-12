@@ -251,7 +251,7 @@ module.exports = function Injector(constructed){
       var resolved = [];
       for(var i = 0; i < dependencies.length; i++){
         if(!modules[dependencies[i]]){
-          hasAllDependencies = true;
+          hasAllDependencies = false;
           break;
         }
         resolved.push(modules[dependencies[i]])
