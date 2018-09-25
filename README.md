@@ -2,9 +2,7 @@
 
 
 ```js
-let Core = require('core.constructor');
-
-let core = new Core();
+let core = new require('core.constructor')();
 
 core.plugin([
   require('core.plugin.injector')
@@ -12,7 +10,7 @@ core.plugin([
 
 core.require(['a', 'c'], (a, c) => {  // require modules 'a' and 'c'
     a; // 2
-    c: // 3
+    c; // 3
 });
 
 core.injector.load('a', ['b'], (b) => {    // load a module called 'a' which depends on 'b'
